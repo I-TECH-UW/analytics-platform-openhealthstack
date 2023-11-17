@@ -1,0 +1,35 @@
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - 
+        name: Checkout code
+        uses: actions/checkout@v4
+
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Run get-cli.sh
+        run: sh get-cli.sh
+
+      - name: Build Docker image
+        run: sh build-image.sh
+
+      - name: Enable Docker Swarm
+        run: docker swarm init
+
+      - name: Deploy Project
+        run: sh ./instant project init
+
+      - name: Display Docker Swarm Services
+        run: docker service ls

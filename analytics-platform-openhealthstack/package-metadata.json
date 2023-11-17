@@ -1,0 +1,14 @@
+{
+  "id": "analytics-platform-openhealthstack",
+  "name": "Open Health Stack FHIR Data Analytics Platform",
+  "description": "Package for running Open Health Stack FHIR Data Pipeline & Platform",
+  "type": "infrastructure",
+  "version": "0.0.0",
+  "dependencies": [],
+  "environmentVariables": {
+    "PIPELINE_CONFIG": "./config",
+    "POSTGRES_USER": "admin",
+    "POSTGRES_PASSWORD": "admin",
+    "POSTGRES_DB_NAME": "fhir-db"
+  }
+}
