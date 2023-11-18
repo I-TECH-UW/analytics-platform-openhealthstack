@@ -10,6 +10,7 @@ services:
       - openhealthstack
       - hapi-fhir
       - default
+      - cs
     configs:
       - source: application.yaml
         target: /app/config/application.yaml
@@ -19,7 +20,8 @@ services:
         target: /app/config/hapi-postgres-config_local.json
       - source: thriftserver-hive-config_local.json
         target: /app/config/thriftserver-hive-config_local.json
-
+    ports:
+      - 8080:8080
 configs:
   application.yaml:
     file: ${PIPELINE_CONFIG}/application.yaml
@@ -40,6 +42,9 @@ networks:
     name: openhealthstack_public
   hapi-fhir:
     name: hapi-fhir
+    external: true
+  cs:
+    name: cs-backend-network
     external: true
 
 volumes:

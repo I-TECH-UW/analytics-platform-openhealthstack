@@ -1,0 +1,8 @@
+_*
+_config/**/*
+
+.env
+
+instant
+instant*
+mk.sh

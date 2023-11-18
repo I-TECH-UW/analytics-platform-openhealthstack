@@ -1,5 +1,5 @@
 projectName: ohsHarness
-image: itechuw/ohsharness:0.0.0
+image: itechuw/ohs-harness:latest
 logPath: /tmp/logs
 
 packages:

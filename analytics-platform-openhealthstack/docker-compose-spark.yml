@@ -11,9 +11,9 @@ services:
       - 5g
     environment:
       - HIVE_SERVER2_THRIFT_PORT=10000
-    # ports:
-    #   - '10001:10000'
-    #   - '4041:4040'
+    ports:
+      - '10001:10000'
+      - '4041:4040'
     volumes:
       - dwh:/dwh
       # NON-EMBEDDED METASTORE CONFIG:
