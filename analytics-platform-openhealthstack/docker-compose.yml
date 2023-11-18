@@ -7,7 +7,6 @@ services:
       - dwh:/dwh
     networks:
       - openhealthstack
-      - hapi-fhir
       - cs
     configs:
       - source: application.yaml
@@ -45,9 +44,6 @@ networks:
   openhealthstack:
     external: true
     name: openhealthstack_public
-  hapi-fhir:
-    name: hapi-fhir
-    external: true
   cs:
     name: cs-backend-network
     external: true
