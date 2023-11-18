@@ -2,14 +2,12 @@ version: '3.8'
 
 services:
   pipeline-controller:
-    hostname: ohs-pipeline-controller
     image: us-docker.pkg.dev/cloud-build-fhir/fhir-analytics/main:latest
     volumes:
       - dwh:/dwh
     networks:
       - openhealthstack
-      - hapi-fhir
-      - default
+      - cs
     configs:
       - source: application.yaml
         target: /app/config/application.yaml
@@ -19,27 +17,35 @@ services:
         target: /app/config/hapi-postgres-config_local.json
       - source: thriftserver-hive-config_local.json
         target: /app/config/thriftserver-hive-config_local.json
-
+    ports:
+      - 8080:8080
 configs:
   application.yaml:
     file: ${PIPELINE_CONFIG}/application.yaml
     name: application.yaml
+    labels:
+      name: openhealthstack
   flink-conf.yaml:
     file: ${PIPELINE_CONFIG}/flink-conf.yaml
     name: flink-conf.yaml
+    labels:
+      name: openhealthstack
   hapi-postgres-config_local.json:
     file: ${PIPELINE_CONFIG}/hapi-postgres-config_local.json
     name: hapi-postgres-config_local.json
+    labels:
+      name: openhealthstack
   thriftserver-hive-config_local.json:
     file: ${PIPELINE_CONFIG}/thriftserver-hive-config_local.json
     name: thriftserver-hive-config_local.json
-
+    labels:
+      name: openhealthstack
 networks:
   openhealthstack:
     external: true
     name: openhealthstack_public
-  hapi-fhir:
-    name: hapi-fhir
+  cs:
+    name: cs-backend-network
     external: true
 
 volumes:

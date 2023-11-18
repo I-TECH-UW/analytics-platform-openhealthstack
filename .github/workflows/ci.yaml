@@ -5,11 +5,18 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - created
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - 
         name: Checkout code
@@ -29,7 +36,7 @@ jobs:
         run: docker swarm init
 
       - name: Deploy Project
-        run: sh ./instant project init
+        run: ./instant project init
 
       - name: Display Docker Swarm Services
         run: docker service ls
