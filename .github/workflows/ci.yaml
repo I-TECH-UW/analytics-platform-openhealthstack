@@ -36,7 +36,7 @@ jobs:
         run: docker swarm init
 
       - name: Deploy Project
-        run: sh ./instant project init
+        run: ./instant project init
 
       - name: Display Docker Swarm Services
         run: docker service ls
